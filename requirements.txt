@@ -1,3 +1,4 @@
+pytest
 requests
-unitest
+unittest
 rich

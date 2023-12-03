@@ -1,9 +1,10 @@
 """Unit tests for task 2"""
-import pytest
 from unittest.mock import patch, MagicMock
 
+import pytest
 
-from test_2 import get_nearest_court_data, add_nearest_court_data
+
+from test_2 import get_nearest_court, add_nearest_courts
 
 
 @patch('test_2.get')
@@ -19,7 +20,7 @@ def test_get_court_valid_output(mock_get):
 
     mock_get.return_value = mock_response
 
-    assert get_nearest_court_data('Test', "testing") == {
+    assert get_nearest_court('Test', "testing") == {
         'court_name': "hello", 'dx_number': '123', 'distance': 'test'}
 
 
@@ -37,7 +38,7 @@ def test_get_court_but_no_types(mock_get):
     mock_get.return_value = mock_response
 
     with pytest.raises(ValueError):
-        get_nearest_court_data('Test', "type")
+        get_nearest_court('Test', "type")
 
 
 @patch('test_2.get')
@@ -51,19 +52,17 @@ def test_get_court_invalid_postcode(mock_get):
     mock_get.return_value = mock_response
 
     with pytest.raises(ValueError):
-        get_nearest_court_data('Test', "type")
+        get_nearest_court('Test', "type")
 
 
-@patch('test_2.get_people_csv')
-@patch('test_2.get_nearest_court_data')
-def test_add_nearest_court_success(mock_get_nearest_court_data, mock_get_people_csv):
+@patch('test_2.get_nearest_court')
+def test_add_nearest_court_success(mock_get_nearest_court):
     """Testing the updated dict contains the correct keys"""
 
-    mock_get_people_csv.return_value = [
+    mock_get_nearest_court.return_value = {'add': 'adding'}
+
+    people = [
         {'home_postcode': 'hello', 'looking_for_court_type': 'testing', 'hello': 'hey'}]
-    mock_get_nearest_court_data.return_value = {'add': 'adding'}
 
-    final_dict = add_nearest_court_data()
-
-    assert final_dict == [
+    assert add_nearest_courts(people) == [
         {'home_postcode': 'hello', 'looking_for_court_type': 'testing', 'hello': 'hey', 'add': 'adding'}]
