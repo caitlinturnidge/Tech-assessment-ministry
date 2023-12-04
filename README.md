@@ -41,3 +41,29 @@ You're free to approach this however you like. We'll ask you to describe your ap
 
 ### Test 3
 This asks you to fix a broken function and then write a unit test for it.
+
+# Explanation my code:
+
+## Requirements
+
+Please run `pip3 install requirements.txt` before running the test files or test_2.py.
+
+## Running
+
+To run each task, run `python3 [NAME_OF_FILE]` or to run the unit tests run `pytest [NAME_OF_TESTING_FILE]`.
+
+## test_1.py
+
+This file extracts data from `sample.log`, it cleans it by removing invalid logs and then adds the log line to a dictionary.
+
+## test_2.py
+
+This file extracts data from `people.csv`, for each person the file takes the desired court type and postcode to fetch the nearest court. It combines the nearest court information (distance, name and dx_number) to the data in people and saves it in a file called `nearest_courts.csv` ready for the analysts to use.
+
+## test_1.py
+
+This file contains the working function `sum_current_time` which takes in a time, check it is in the correct format and return the sum of all the digits in the time.
+
+## Testing files
+
+I have written a unit test file `test_test_2.py` for task 2 and `test_test_3.py` for task 3, to test individual functions and edge cases.
