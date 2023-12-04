@@ -4,6 +4,7 @@ from rich.progress import track
 
 from requests import get
 
+
 API_BASE_URL = "https://www.find-court-tribunal.service.gov.uk"
 
 
@@ -13,7 +14,7 @@ def get_people_csv() -> list[dict]:
         return list(csv.DictReader(csv_file))
 
 
-def get_nearest_court(postcode: str, court_type: str) -> list[dict]:
+def get_nearest_court(postcode: str, court_type: str) -> dict:
     """Gets and returns the necessary court data for a given postcode and court type."""
 
     response = get(

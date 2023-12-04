@@ -1,7 +1,9 @@
-"""File contains functions to clean the log data and transform each log into a dict"""
+"""File contains functions to clean the log data and transform each log line into a dict"""
+
+TIMESTAMP_LENGTH = 17
 
 
-def is_log_line(line):
+def is_log_line(line: str) -> bool:
     """Takes a log line and returns True if it is a valid log line."""
     #  Check message exists
     if ':.' not in line:
@@ -14,11 +16,11 @@ def is_log_line(line):
     return True
 
 
-def get_dict(line):
+def get_dict(line: str) -> dict:
     """Takes a log line and returns a dict with `timestamp`, `log_level`, `message` keys"""
     line_dict = {}
 
-    line_dict['timestamp'] = line[:17]
+    line_dict['timestamp'] = line[:TIMESTAMP_LENGTH]
 
     if 'INFO' in line:
         line_dict['log_level'] = 'INFO'

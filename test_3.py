@@ -1,5 +1,8 @@
 """This file contains the working function, which returns the sum of all the digits in the time"""
 
+MAX_HOURS = 24
+MAX_MINS = 59
+MAX_SECS = 59
 
 def sum_current_time(time_str: str) -> int:
     """Returns the sum of the digits in the time given."""
@@ -16,13 +19,13 @@ def sum_current_time(time_str: str) -> int:
         except Exception as e:
             raise ValueError('Time not valid') from e
 
-    if times[0] > 24:
+    if times[0] > MAX_HOURS:
         raise ValueError('Hour cannot be larger than 24')
 
-    if times[1] >= 60:
+    if times[1] > MAX_MINS:
         raise ValueError('Minutes cannot be larger than 60')
 
-    if times[2] >= 60:
+    if times[2] > MAX_SECS:
         raise ValueError('Seconds cannot be larger than 60')
 
     # Sum the digits in the time
