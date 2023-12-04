@@ -2,7 +2,7 @@
 
 
 def is_log_line(line):
-    """Takes a log line and returns True if it is a valid log line and returns nothing if it is not."""
+    """Takes a log line and returns True if it is a valid log line."""
     #  Check message exists
     if ':.' not in line:
         return False
